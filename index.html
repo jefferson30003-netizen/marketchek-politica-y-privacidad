@@ -3,190 +3,212 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Política de Privacidad y Términos - Markechek Internacional</title>
+<title>Eliminar mi cuenta de Markechek</title>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-functions-compat.js"></script>
 <style>
+  * { box-sizing: border-box; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    max-width: 820px;
+    max-width: 560px;
     margin: 0 auto;
-    padding: 24px 20px 80px;
+    padding: 30px 20px 80px;
     color: #0F172A;
-    line-height: 1.6;
     background: #FAF9F6;
+    line-height: 1.6;
   }
-  h1 { font-size: 26px; font-weight: 800; margin-bottom: 4px; }
-  .fecha { color: #94A3B8; font-size: 13px; margin-bottom: 24px; }
-  .tabs { display: flex; gap: 8px; margin-bottom: 28px; border-bottom: 2px solid #E2E8F0; }
-  .tab { padding: 10px 18px; cursor: pointer; font-weight: 700; font-size: 14px; color: #64748B; border-bottom: 3px solid transparent; text-decoration: none; }
-  .tab.activo { color: #8B5CF6; border-bottom-color: #8B5CF6; }
-  section { display: none; }
-  section.activo { display: block; }
-  h2 { font-size: 15px; font-weight: 700; margin-top: 26px; margin-bottom: 6px; color: #0F172A; }
-  h3 { font-size: 13px; font-weight: 700; margin-top: 16px; margin-bottom: 4px; color: #334155; }
-  p, li { font-size: 14px; color: #334155; margin-top: 0; }
-  ul { margin-top: 4px; padding-left: 20px; }
-  table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
-  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #E2E8F0; vertical-align: top; }
-  th { color: #64748B; font-weight: 700; }
-  .aviso { background: #FEF3C7; padding: 14px 16px; border-radius: 10px; margin-top: 30px; font-size: 12.5px; color: #92400E; line-height: 1.5; }
-  .honestidad { background: #FEE2E2; padding: 14px 16px; border-radius: 10px; margin-top: 16px; font-size: 13px; color: #991B1B; line-height: 1.5; }
-  .contacto { background: #EDE9FE; padding: 14px 16px; border-radius: 10px; margin-top: 20px; font-size: 13px; color: #4C1D95; }
+  h1 { font-size: 22px; font-weight: 800; margin-bottom: 4px; }
+  .subt { color: #64748B; font-size: 14px; margin-bottom: 24px; }
+  .card { background: #fff; border-radius: 16px; padding: 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); margin-bottom: 20px; }
+  h2 { font-size: 15px; font-weight: 700; margin-top: 0; margin-bottom: 10px; }
+  p { font-size: 14px; color: #334155; }
+  ul { font-size: 14px; color: #334155; padding-left: 20px; }
+  input[type=email], input[type=password], input[type=text] {
+    width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid #E2E8F0;
+    font-size: 14px; margin-bottom: 10px; background: #F8FAFC;
+  }
+  button {
+    width: 100%; padding: 13px; border-radius: 12px; border: none; font-size: 14px;
+    font-weight: 700; cursor: pointer; margin-top: 4px;
+  }
+  .btn-primario { background: #8B5CF6; color: #fff; }
+  .btn-primario:disabled { opacity: 0.5; cursor: not-allowed; }
+  .btn-google { background: #fff; border: 1px solid #E2E8F0; color: #334155; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .btn-peligro { background: #EF4444; color: #fff; }
+  .btn-secundario { background: #F1F5F9; color: #334155; }
+  .oculto { display: none; }
+  .aviso-rojo { background: #FEE2E2; color: #991B1B; padding: 12px 14px; border-radius: 10px; font-size: 13px; margin-top: 10px; }
+  .aviso-amarillo { background: #FEF3C7; color: #92400E; padding: 12px 14px; border-radius: 10px; font-size: 13px; margin-top: 10px; }
+  .aviso-verde { background: #DCFCE7; color: #166534; padding: 12px 14px; border-radius: 10px; font-size: 13px; margin-top: 10px; }
+  .cuenta-info { background: #F1F5F9; padding: 12px 14px; border-radius: 10px; font-size: 13px; margin-bottom: 16px; }
+  label { font-size: 13px; color: #334155; display: flex; align-items: flex-start; gap: 8px; margin-top: 12px; }
   a { color: #8B5CF6; }
-  code { background: #F1F5F9; padding: 1px 6px; border-radius: 4px; font-size: 12.5px; }
+  .contacto { font-size: 13px; color: #64748B; margin-top: 30px; text-align: center; }
 </style>
 </head>
 <body>
 
-<h1>Markechek Internacional</h1>
-<div class="fecha">Última actualización: agosto 2026</div>
+  <h1>Eliminar mi cuenta de Markechek</h1>
+  <div class="subt">Markechek Internacional — solicitud de eliminación de cuenta</div>
 
-<div class="tabs">
-  <a class="tab activo" href="#privacidad" onclick="mostrar('privacidad')">Política de Privacidad</a>
-  <a class="tab" href="#terminos" onclick="mostrar('terminos')">Términos y Condiciones</a>
-</div>
+  <!-- ===== PASO 1: Iniciar sesión para verificar identidad ===== -->
+  <div class="card" id="paso-login">
+    <h2>Primero, verifica que eres tú</h2>
+    <p>Para proteger tu cuenta, necesitamos que inicies sesión con las mismas credenciales que usas en la app antes de poder eliminarla. Esto evita que otra persona pueda borrar tu cuenta sin tu permiso.</p>
 
-<section id="privacidad" class="activo">
+    <button class="btn-google" onclick="iniciarSesionGoogle()">
+      Iniciar sesión con Google
+    </button>
 
-  <h2>1. Quiénes somos</h2>
-  <p>Markechek Internacional es una app de marketplace y video social operada de forma independiente. Puedes contactarnos en <strong>soporte.markechek@gmail.com</strong> para cualquier consulta sobre esta política o tus datos.</p>
+    <p style="text-align:center; color:#94A3B8; font-size:12px; margin: 14px 0;">— o con correo y contraseña —</p>
 
-  <h2>2. Datos que recopilamos, con detalle real</h2>
+    <input type="email" id="input-email" placeholder="Correo electrónico">
+    <input type="password" id="input-password" placeholder="Contraseña">
+    <button class="btn-primario" onclick="iniciarSesionCorreo()">Iniciar sesión</button>
 
-  <h3>2.1 Al registrarte</h3>
-  <ul>
-    <li>Nombre, apellido, correo electrónico, contraseña (o credencial de Google si inicias sesión con Google).</li>
-    <li>Fecha de nacimiento (para confirmar que eres mayor de 18 años).</li>
-    <li>Foto de perfil (opcional).</li>
-  </ul>
+    <div id="error-login" class="aviso-rojo oculto"></div>
 
-  <h3>2.2 Al verificar tu número de teléfono</h3>
-  <p>Verificamos tu número mediante un código SMS, usando Firebase Phone Authentication. Este proceso incluye un reCAPTCHA invisible de Google (cargado dentro de un componente web integrado en la app) para confirmar que quien solicita el código es una persona real y no un bot. Tu número verificado se guarda en tu perfil.</p>
-
-  <h3>2.3 Al usar el marketplace</h3>
-  <ul>
-    <li>Fotos, título, precio, categoría, descripción, etiquetas y ubicación de los artículos que publiques.</li>
-    <li>Si publicas un vehículo o maquinaria pesada, el número de chasis (VIN) es obligatorio; si publicas electrónica, el IMEI es opcional. <strong>Este dato se guarda en una subcolección privada de Firestore, separada del documento público del producto, y solo tú puedes leerlo</strong> — nunca se muestra a otros usuarios ni aparece en las reglas de lectura pública.</li>
-  </ul>
-
-  <h3>2.4 Al usar el chat</h3>
-  <p>Guardamos el contenido de tus mensajes: texto, fotos, notas de voz, ubicaciones compartidas, contactos compartidos, documentos, encuestas y eventos que crees dentro de una conversación.</p>
-  <p><strong>Traducción automática:</strong> si activas la traducción de mensajes en un chat, el texto del mensaje que quieres traducir se envía a un endpoint no oficial y gratuito de Google Translate (<code>translate.googleapis.com</code>) para obtener la traducción. Este no es un servicio contratado formalmente con garantías de nivel empresarial — es un endpoint público que Google podría modificar o retirar sin aviso. El texto se envía, se traduce y se muestra, sin quedar almacenado por Markechek fuera de tu propia conversación.</p>
-
-  <h3>2.5 Ubicación</h3>
-  <p>Si eliges una ubicación en el mapa (para tu perfil, un producto, o para compartir tu posición en un chat), tus coordenadas se envían al servicio gratuito de geocodificación de OpenStreetMap (<code>nominatim.openstreetmap.org</code>) para convertirlas en una dirección legible (ej. "La Vega, República Dominicana"). El mapa interactivo en sí se muestra usando mapas de OpenStreetMap.</p>
-
-  <h3>2.6 Contactos del teléfono</h3>
-  <p>Si usas la función de "Agregar desde mis contactos" (en Amigos o en el chat), la app lee tu lista de contactos del teléfono (nombre y número) con tu permiso explícito del sistema operativo, para que puedas elegir a quién agregar o con quién chatear por WhatsApp. Estos contactos se guardan únicamente en tu propia subcolección de Firestore — no se comparten con otros usuarios ni con terceros.</p>
-
-  <h3>2.7 Cámara, micrófono y transmisiones en vivo</h3>
-  <p>Si grabas un video, tomas una foto, grabas una nota de voz, o inicias una transmisión en vivo (Live/Subasta), accedemos a tu cámara y/o micrófono únicamente mientras usas esa función, con tu permiso explícito del sistema operativo.</p>
-
-  <h3>2.8 Reseñas</h3>
-  <p>Si escribes una reseña de un vendedor, guardamos tu calificación, comentario, y hasta 3 fotos opcionales de evidencia, asociadas a tu nombre y foto de perfil, visibles públicamente en el perfil del vendedor.</p>
-
-  <h3>2.9 Códigos QR de entrega</h3>
-  <p>Al publicar un artículo, generamos un código QR único de confirmación de entrega usando un servicio externo (<code>api.qrserver.com</code>), al que se le envía únicamente el código generado (no datos personales) para producir la imagen del QR.</p>
-
-  <h3>2.10 Pagos y suscripciones</h3>
-  <p>Las compras de planes (Emprendedor, Agencia Pro), publicidad corporativa, y destacar publicaciones se procesan mediante Google Play Billing. <strong>Markechek nunca ve, procesa ni almacena los datos de tu tarjeta o método de pago</strong> — eso lo maneja Google directamente.</p>
-  <p>Si tu dispositivo no tiene Google Play Services (por ejemplo, algunos modelos Huawei), ofrecemos una alternativa manual de pago por WhatsApp, en la que compartes tu número de teléfono directamente con nuestro equipo de soporte para coordinar el pago y activar el plan manualmente desde nuestro sistema.</p>
-
-  <h3>2.11 Notificaciones push</h3>
-  <p>Si activas las notificaciones, usamos Expo Notifications para enviarte avisos relacionados con tu actividad en la app (mensajes nuevos, actividad en tus publicaciones, etc.).</p>
-
-  <h2>3. Permisos del dispositivo que solicitamos</h2>
-  <table>
-    <tr><th>Permiso</th><th>Para qué lo usamos</th></tr>
-    <tr><td>Cámara</td><td>Tomar fotos de artículos, grabar videos cortos, transmitir en vivo.</td></tr>
-    <tr><td>Micrófono</td><td>Grabar notas de voz en el chat, audio de tus videos y transmisiones en vivo.</td></tr>
-    <tr><td>Ubicación (aproximada y precisa)</td><td>Compartir tu ubicación en un chat y ayudarte a elegir la ubicación de tus artículos en el mapa.</td></tr>
-    <tr><td>Contactos (leer y escribir)</td><td>Encontrar amigos que ya usan la app y ayudarte a contactar a tus contactos del teléfono por WhatsApp.</td></tr>
-    <tr><td>Fotos / Galería</td><td>Subir fotos de artículos, tu perfil, tu banner, reseñas, y compartir fotos en el chat.</td></tr>
-  </table>
-  <p>Ningún permiso se activa hasta que uses la función correspondiente, y siempre puedes revocarlos desde los ajustes de tu sistema operativo.</p>
-
-  <h2>4. Con quién compartimos datos (subencargados del tratamiento)</h2>
-  <table>
-    <tr><th>Servicio</th><th>Qué datos recibe</th></tr>
-    <tr><td>Google Firebase (Auth, Firestore, Storage)</td><td>Todos los datos de tu cuenta, publicaciones, chats y archivos multimedia. Es nuestra infraestructura principal.</td></tr>
-    <tr><td>Google Play Billing</td><td>Procesa tus compras de planes y suscripciones. No compartimos tu tarjeta con ellos porque nunca la vemos nosotros tampoco.</td></tr>
-    <tr><td>Google Sign-In</td><td>Si eliges iniciar sesión con Google, recibimos tu nombre, correo y foto de tu cuenta de Google.</td></tr>
-    <tr><td>Google reCAPTCHA</td><td>Verifica que las solicitudes de código SMS provienen de una persona real.</td></tr>
-    <tr><td>Google Translate (endpoint público no oficial)</td><td>Recibe el texto de un mensaje de chat cuando activas la traducción automática.</td></tr>
-    <tr><td>OpenStreetMap / Nominatim</td><td>Recibe coordenadas de ubicación para convertirlas en direcciones legibles, y sirve las imágenes del mapa.</td></tr>
-    <tr><td>api.qrserver.com</td><td>Recibe el código QR generado (no datos personales) para producir la imagen del código.</td></tr>
-    <tr><td>WhatsApp</td><td>Si usas los botones de contacto por WhatsApp, tu número y mensaje se comparten dentro de la conversación de WhatsApp que tú mismo inicias.</td></tr>
-  </table>
-  <p>No vendemos tus datos a terceros bajo ninguna circunstancia. Google procesa los datos bajo sus propios acuerdos de protección de datos y está certificado bajo el Marco de Privacidad de Datos UE-EE.UU. para transferencias internacionales conformes al RGPD.</p>
-
-  <h2>5. Base legal del tratamiento</h2>
-  <p>Tratamos tus datos porque son necesarios para prestarte el servicio (ejecución del contrato al crear tu cuenta), por tu consentimiento explícito (ubicación, contactos, cámara, micrófono — cada uno pedido individualmente cuando lo necesitas), o por interés legítimo (seguridad, prevención de fraude, cumplimiento de nuestras políticas de uso).</p>
-
-  <h2>6. Tus derechos</h2>
-  <p>Tienes derecho a acceder, rectificar, eliminar, limitar el tratamiento, oponerte al tratamiento, y a la portabilidad de tus datos. Puedes ejercerlos desde "Editar información de perfil" o eliminando tu cuenta desde Perfil → "Eliminar mi cuenta permanentemente". Si vives en la Unión Europea, tienes derecho a presentar una reclamación ante tu autoridad de control (en España, la AEPD, www.aepd.es).</p>
-
-  <div class="honestidad">
-    <strong>⚠️ Estado real de la eliminación de cuenta (transparencia, no un texto genérico):</strong> al eliminar tu cuenta, borramos tu perfil de inmediato. Sin embargo, actualmente la limpieza completa de tus publicaciones, productos, comentarios, reseñas y mensajes en chats con otros usuarios <strong>todavía no es automática ni instantánea</strong> — estamos desplegando un proceso de limpieza en segundo plano para completar esto. Si necesitas que se elimine contenido específico de inmediato, escríbenos a soporte.markechek@gmail.com y lo atendemos manualmente mientras completamos esta automatización.
+    <p style="margin-top:20px; font-size:12.5px; color:#94A3B8;">
+      ¿No puedes iniciar sesión (olvidaste tu contraseña, o tu número de teléfono ya no existe)? Escríbenos a
+      <strong>soporte.markechek@gmail.com</strong> desde el correo de tu cuenta y verificaremos tu identidad manualmente para eliminarla.
+    </p>
   </div>
 
-  <h2>7. Edad mínima</h2>
-  <p>Markechek es solo para mayores de 18 años, ya que la app incluye compras y suscripciones dentro de la aplicación. Si detectamos una cuenta de un menor de 18 años, la eliminaremos.</p>
+  <!-- ===== PASO 2: Confirmar eliminación ===== -->
+  <div class="card oculto" id="paso-confirmar">
+    <h2>Confirma la eliminación</h2>
+    <div class="cuenta-info">
+      Sesión iniciada como: <strong id="texto-email-cuenta"></strong>
+    </div>
 
-  <h2>8. Retención de datos</h2>
-  <p>Guardamos tus datos mientras tu cuenta esté activa. Ver la nota de transparencia en la sección 6 sobre el estado actual de la eliminación completa de contenido asociado.</p>
+    <p><strong>Al eliminar tu cuenta, se borrará permanentemente:</strong></p>
+    <ul>
+      <li>Tu perfil (nombre, foto, correo, teléfono verificado, ubicación).</li>
+      <li>Todos tus productos y publicaciones, junto con sus fotos y videos.</li>
+      <li>Tus reseñas escritas sobre otros vendedores.</li>
+      <li>Tus comentarios y "me gusta" en publicaciones ajenas.</li>
+      <li>Tus mensajes en los chats (los mensajes de la otra persona en esas conversaciones se conservan, ya que le pertenecen a ella también).</li>
+      <li>Tus transmisiones en vivo, amigos guardados, artículos guardados, alertas y usuarios bloqueados.</li>
+      <li>Tu acceso de inicio de sesión (Firebase Authentication).</li>
+    </ul>
 
-  <h2>9. Seguridad</h2>
-  <ul>
-    <li>Reglas de seguridad de Firestore que restringen el acceso a tus datos según quién eres (por ejemplo, el número de chasis/IMEI de un producto solo lo puede leer su dueño).</li>
-    <li>Cifrado en tránsito (HTTPS/TLS) en todas las comunicaciones con nuestros servidores.</li>
-    <li>Validación de enlaces: los anuncios publicitarios y enlaces externos dentro de la app solo se abren si empiezan con <code>https://</code>, para prevenir enlaces maliciosos.</li>
-    <li>Sistema de bloqueo de usuarios: si bloqueas a alguien, dejas de ver su contenido y mensajes en toda la app.</li>
-    <li>Paginación en listados de productos y publicaciones para evitar exponer más datos de los necesarios en cada consulta.</li>
-  </ul>
+    <p><strong>Lo único que se conserva, por obligación legal, y de forma separada de tu perfil:</strong></p>
+    <ul>
+      <li>Recibos de pagos de suscripciones ya procesados, de forma anónima (sin vincularse a tu nombre), por el tiempo que exijan las obligaciones fiscales aplicables.</li>
+      <li>Si alguna vez denunciaste a otro usuario, ese reporte se conserva sin tus datos identificables, para no perder el historial de moderación de ese caso.</li>
+    </ul>
 
-  <h2>10. Contacto</h2>
-  <p>Para cualquier duda sobre tus datos, o para ejercer tus derechos, escríbenos a <strong>soporte.markechek@gmail.com</strong>.</p>
-</section>
+    <div class="aviso-amarillo">Esta acción no se puede deshacer. Una vez eliminada, no podemos recuperar tu cuenta ni tu contenido.</div>
 
-<section id="terminos">
-  <h2>1. Uso de la app</h2>
-  <p>Markechek es un espacio para comprar, vender y transmitir en vivo entre usuarios. Al usarla, confirmas que la información que publicas (productos, descripciones, precios) es verídica.</p>
+    <label>
+      <input type="checkbox" id="check-confirmo" onchange="revisarBotonFinal()">
+      Entiendo que esta acción es permanente y no se puede deshacer.
+    </label>
 
-  <h2>2. Conducta prohibida</h2>
-  <p>No está permitido: publicar contenido ilegal, acosar a otros usuarios, hacer fraude en ventas o subastas, ni intentar evadir el sistema de pagos de la app para las suscripciones (por ejemplo, compartir números de teléfono o lenguaje de venta directa por el chat sin tener un plan activo).</p>
+    <p style="margin-top:16px; font-size:13px;">Para confirmar, escribe <strong>ELIMINAR</strong> en el campo de abajo:</p>
+    <input type="text" id="input-eliminar" placeholder="Escribe ELIMINAR" oninput="revisarBotonFinal()">
 
-  <h2>3. Contenido que publicas</h2>
-  <p>Tú sigues siendo el dueño de tus fotos, videos y publicaciones. Al publicarlos en Markechek, nos das permiso para mostrarlos dentro de la app a otros usuarios.</p>
+    <button class="btn-peligro" id="btn-eliminar-final" disabled onclick="ejecutarEliminacion()">
+      Eliminar mi cuenta permanentemente
+    </button>
+    <button class="btn-secundario" onclick="cancelarYCerrarSesion()">Cancelar</button>
 
-  <h2>4. Compras y suscripciones</h2>
-  <p>Los planes y la función de destacar publicaciones se cobran a través de Google Play Billing (o, en dispositivos sin Google Play, mediante nuestra alternativa manual por WhatsApp). Las suscripciones vía Google Play se renuevan automáticamente salvo que las canceles desde la configuración de tu cuenta de Google Play; si cancelas, conservas el acceso hasta el final del período ya pagado.</p>
+    <div id="progreso-eliminando" class="aviso-amarillo oculto">Eliminando tu cuenta, esto puede tardar unos segundos. No cierres esta página...</div>
+    <div id="error-eliminando" class="aviso-rojo oculto"></div>
+  </div>
 
-  <h2>5. Moderación</h2>
-  <p>Nos reservamos el derecho de eliminar contenido que viole estos términos, y de suspender cuentas que reciban denuncias reiteradas y verificadas.</p>
+  <!-- ===== PASO 3: Confirmación final ===== -->
+  <div class="card oculto" id="paso-listo">
+    <div class="aviso-verde">
+      ✅ Tu cuenta se eliminó correctamente. Gracias por haber usado Markechek.
+    </div>
+    <p style="margin-top:14px;">Si tienes alguna duda, puedes escribirnos a <strong>soporte.markechek@gmail.com</strong>.</p>
+  </div>
 
-  <h2>6. Responsabilidad</h2>
-  <p>Markechek es un intermediario entre compradores y vendedores — no participamos directamente en las transacciones de productos físicos ni garantizamos la calidad de lo que se vende.</p>
+  <div class="contacto">
+    Markechek Internacional · <a href="mailto:soporte.markechek@gmail.com">soporte.markechek@gmail.com</a>
+  </div>
 
-  <h2>7. Cambios a estos términos</h2>
-  <p>Podemos actualizar estos términos ocasionalmente. Te avisaremos dentro de la app si hay cambios importantes.</p>
-</section>
+  <script>
+    // ============================================================
+    // IMPORTANTE: reemplaza esto con tu firebaseConfig REAL, el mismo
+    // objeto que usas en firebaseConfig.ts dentro de tu app.
+    // ============================================================
+    const firebaseConfig = {
+      apiKey: "TU_API_KEY",
+      authDomain: "markechek-4713e.firebaseapp.com",
+      projectId: "markechek-4713e",
+      storageBucket: "markechek-4713e.firebasestorage.app",
+      messagingSenderId: "354886049394",
+      appId: "TU_APP_ID"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const functions = firebase.functions();
 
-<div class="contacto">
-  📧 Correo de soporte: <strong>soporte.markechek@gmail.com</strong>
-</div>
+    function mostrarError(elId, mensaje) {
+      const el = document.getElementById(elId);
+      el.textContent = mensaje;
+      el.classList.remove('oculto');
+    }
+    function ocultar(id) { document.getElementById(id).classList.add('oculto'); }
+    function mostrar(id) { document.getElementById(id).classList.remove('oculto'); }
 
-<div class="aviso">
-  ⚠️ Este documento describe con precisión el funcionamiento técnico actual de la app al momento de esta actualización. Antes de una expansión a más países, recomendamos revisión legal profesional para adaptarlo a las leyes específicas de cada jurisdicción (RGPD en Europa, CCPA en California, LGPD en Brasil, etc.).
-</div>
+    function iniciarSesionGoogle() {
+      const proveedor = new firebase.auth.GoogleAuthProvider();
+      auth.signInWithPopup(proveedor)
+        .then(alIniciarSesion)
+        .catch(e => mostrarError('error-login', 'No se pudo iniciar sesión con Google: ' + e.message));
+    }
 
-<script>
-  function mostrar(id) {
-    document.querySelectorAll('section').forEach(s => s.classList.remove('activo'));
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('activo'));
-    document.getElementById(id).classList.add('activo');
-    event.target.classList.add('activo');
-  }
-</script>
+    function iniciarSesionCorreo() {
+      const email = document.getElementById('input-email').value.trim();
+      const password = document.getElementById('input-password').value;
+      if (!email || !password) {
+        mostrarError('error-login', 'Escribe tu correo y contraseña.');
+        return;
+      }
+      auth.signInWithEmailAndPassword(email, password)
+        .then(alIniciarSesion)
+        .catch(e => mostrarError('error-login', 'Correo o contraseña incorrectos.'));
+    }
 
+    function alIniciarSesion(resultado) {
+      ocultar('paso-login');
+      document.getElementById('texto-email-cuenta').textContent = resultado.user.email || resultado.user.phoneNumber || 'tu cuenta';
+      mostrar('paso-confirmar');
+    }
+
+    function revisarBotonFinal() {
+      const check = document.getElementById('check-confirmo').checked;
+      const texto = document.getElementById('input-eliminar').value.trim();
+      document.getElementById('btn-eliminar-final').disabled = !(check && texto === 'ELIMINAR');
+    }
+
+    function cancelarYCerrarSesion() {
+      auth.signOut();
+      ocultar('paso-confirmar');
+      mostrar('paso-login');
+    }
+
+    function ejecutarEliminacion() {
+      document.getElementById('btn-eliminar-final').disabled = true;
+      mostrar('progreso-eliminando');
+      ocultar('error-eliminando');
+
+      const eliminar = functions.httpsCallable('eliminarCuentaCompleta');
+      eliminar()
+        .then(() => {
+          ocultar('paso-confirmar');
+          mostrar('paso-listo');
+        })
+        .catch(e => {
+          ocultar('progreso-eliminando');
+          mostrarError('error-eliminando', 'Hubo un problema eliminando algunos datos: ' + e.message + '. Puedes intentar de nuevo tocando el botón, o escribirnos a soporte.markechek@gmail.com.');
+          document.getElementById('btn-eliminar-final').disabled = false;
+        });
+    }
+  </script>
 </body>
 </html>
